@@ -1,0 +1,20 @@
+{
+  "name": "nginx-and-nodejs-on-docker",
+  "version": "1.0.0",
+  "description": "A simple seed project that has Nginx as reverse proxy for 2 Node application containers and 2 Node API containers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "nginx",
+    "api",
+    "docker",
+    "containers",
+    "compose",
+    "dockerfile"
+  ],
+  "author": "Rahul Soni <rahul@attosol.com> (http://www.attosol.com/)",
+  "license": "MIT"
+}

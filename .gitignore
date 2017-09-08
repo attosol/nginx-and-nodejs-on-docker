@@ -1,0 +1,5 @@
+scripts/.seeddata
+data/configdb
+data/db
+.idea/
+.idea/vcs.xml

@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  database:
+    image: ${DATABASE_VERSION}
+    networks:
+      - backend
+    container_name: ${DATABASE_CONTAINER_NAME}
+    volumes:
+      - mongo-data:/data/db
+      - ./docker/scripts:/scripts
+      - ./docker/data:/data
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  mongo-data:
