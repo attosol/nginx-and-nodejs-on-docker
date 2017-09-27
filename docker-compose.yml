@@ -11,6 +11,17 @@ services:
       - ./docker/scripts:/scripts
       - ./docker/data:/data
 
+  node_server:
+    container_name: ${NODE_CONTAINER_NAME}
+    image: ${NODE_VERSION}
+    build:
+      context: ./web
+      dockerfile: node.dockerfile
+    networks:
+      - backend
+    ports:
+      - "80:3000"
+
 networks:
   backend:
     driver: bridge
