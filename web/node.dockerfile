@@ -8,7 +8,8 @@ WORKDIR /web
 COPY package.json .
 
 # Install dependencies
-RUN npm install
+RUN npm install && \
+    npm install -g pm2
 
 # Deploy Code from current directory to WORKDIR
 COPY . .
@@ -16,4 +17,4 @@ COPY . .
 # Expose website on port
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["pm2-docker", "process.json"]
