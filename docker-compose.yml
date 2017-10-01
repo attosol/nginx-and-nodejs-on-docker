@@ -11,8 +11,10 @@ services:
       - ./docker/scripts:/scripts
       - ./docker/data:/data
 
-  node_server:
-    container_name: ${NODE_CONTAINER_NAME}
+  node_server_1:
+    environment:
+      - NODE=${NODE_CONTAINER_NAME_1}
+    container_name: ${NODE_CONTAINER_NAME_1}
     image: ${NODE_VERSION}
     build:
       context: ./web
@@ -20,7 +22,22 @@ services:
     networks:
       - backend
     ports:
-      - "80:3000"
+      - "81:3000"
+    volumes:
+      - ./web:/web
+
+  node_server_2:
+    environment:
+      - NODE=${NODE_CONTAINER_NAME_2}
+    container_name: ${NODE_CONTAINER_NAME_2}
+    image: ${NODE_VERSION}
+    build:
+      context: ./web
+      dockerfile: node.dockerfile
+    networks:
+      - backend
+    ports:
+      - "82:3000"
     volumes:
       - ./web:/web
 

@@ -7,6 +7,12 @@ let app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
+app.disable('x-powered-by');
+app.use(function(req, res, next) {
+  res.header('X-Server', process.env.NODE);
+  next();
+});
+
 app.get('/', (req, res) => {
   res.send('Hello world!\n');
 });
