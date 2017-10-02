@@ -21,10 +21,10 @@ services:
       dockerfile: node.dockerfile
     networks:
       - backend
-    ports:
-      - "81:3000"
     volumes:
       - ./web:/web
+    depends_on:
+      - database
 
   node_server_2:
     environment:
@@ -36,10 +36,25 @@ services:
       dockerfile: node.dockerfile
     networks:
       - backend
-    ports:
-      - "82:3000"
     volumes:
       - ./web:/web
+    depends_on:
+      - database
+
+  nginx:
+    container_name: ${NGINX_CONTAINER_NAME}
+    image: ${NGINX_VERSION}
+    build:
+      context: ./nginx
+      dockerfile: nginx.dockerfile
+    networks:
+      - backend
+    ports:
+      - 80:80
+    depends_on:
+      - node_server_1
+      - node_server_2
+      - database
 
 networks:
   backend:
